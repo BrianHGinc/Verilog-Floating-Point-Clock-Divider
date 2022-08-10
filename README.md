@@ -1,7 +1,7 @@
-**************************************************************************************************
-
-  BHG_FP_clk_divider.v   V1.0, August 2022.
-  
+-------------------------------------------------------------------------------------------
+ BHG_FP_clk_divider.v   V1.0, August 2022.
+-------------------------------------------------------------------------------------------
+ 
   Floating point clock divider/synthesizer.
   
   24.16 (m.n) bit floating point clock divider. (Actually it is a fixed point fractional divider.)
