@@ -4,7 +4,7 @@
   
   Floating point clock divider/synthesizer.
   
-  13.16 (m.n) bit floating point clock divider. (Actually it is a fixed point fractional divider.)
+  24.16 (m.n) bit floating point clock divider. (Actually it is a fixed point fractional divider.)
   
   Written by Brian Guralnick.
   
