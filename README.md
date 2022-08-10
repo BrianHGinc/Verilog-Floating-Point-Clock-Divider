@@ -34,22 +34,22 @@ Example Modelsim screenshot of simulating a full second:
 
 (USE_FLOATING_DIVIDE=1,CLK_IN_HZ=100000000,CLK_OUT_HZ=3579545)
 
-screenshots/Modelsim_FPD_fp_on.png
+https://github.com/BrianHGinc/Verilog-Floating-Point-Clock-Divider/blob/main/screenshots/Modelsim_FPD_fp_on.png
 
 (USE_FLOATING_DIVIDE=0,CLK_IN_HZ=100000000,CLK_OUT_HZ=3579545)
 
-screenshots/Modelsim_FPD_fp_off.png
+https://github.com/BrianHGinc/Verilog-Floating-Point-Clock-Divider/blob/main/screenshots/Modelsim_FPD_fp_off.png
 
 
 Example Quartus screenshot of compilation report with LUT/LR:
 
 (USE_FLOATING_DIVIDE=1,CLK_IN_HZ=148500000,CLK_OUT_HZ=3072000 = Audio I2S sclk for 48000Khz sound)
 
-screenshots/Quartus_FPD_fp_on.png
+https://github.com/BrianHGinc/Verilog-Floating-Point-Clock-Divider/blob/main/screenshots/Quartus_FPD_fp_on.png
 
 (USE_FLOATING_DIVIDE=0,CLK_IN_HZ=148500000,CLK_OUT_HZ=3072000 = Audio I2S sclk for 48000Khz sound)
 
-screenshots/Quartus_FPD_fp_off.png
+https://github.com/BrianHGinc/Verilog-Floating-Point-Clock-Divider/blob/main/screenshots/Quartus_FPD_fp_off.png
 
 
 Looking at the 'Frequency error PPM' alone shows the value in this code.
