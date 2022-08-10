@@ -1,5 +1,5 @@
 // ***************************************************************************************************************
-// BHG_FP_clk_divider_tb.v   V1.0, August 2022.
+// BHG_FP_clk_divider_tb.v   V1.1, August 2022.
 // Floating point clock divider/synthesizer testbench.
 // 24.16 (m.n) bit floating point clock divider. (Actually it is a fixed point fractional divider.)
 //
@@ -25,6 +25,8 @@
 `timescale 1 ps/1 ps
 `include "BHG_FP_clk_divider.v"
 
+module BHG_FP_clk_divider_tb ();
+
 localparam  USE_FLOATING_DIVIDE = 1         ; // 1= use floating point, 0= simple integer divide mode.
 localparam  CLK_IN_HZ           = 100000000 ; // Source  clk_in  frequency in Hz.
 localparam  CLK_OUT_HZ          = 3579545   ; // Desired clk_out frequency in Hz.
@@ -33,7 +35,6 @@ localparam  [63:0] RUNTIME_MS   = 1                        ; // Number of millis
 localparam  [63:0] PS_NUMERATOR = 1000000 * 1000000        ; // Need this number to be a 64bit integer.
 localparam  [63:0] CLK_PERIOD   = PS_NUMERATOR/CLK_IN_HZ   ; // Period of simulated clock.
 
-module BHG_FP_clk_divider_tb ();
     reg clk = 0 ; wire cnt_ena ; integer p_count = 0 ;
 // ***********************************************************************************************************************************************
 // Instantiate BHG_FP_clk_divider.
