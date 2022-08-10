@@ -1,10 +1,13 @@
 **************************************************************************************************
 
   BHG_FP_clk_divider.v   V1.0, August 2022.
+  
   Floating point clock divider/synthesizer.
+  
   13.16 (m.n) bit floating point clock divider. (Actually it is a fixed point fractional divider.)
   
   Written by Brian Guralnick.
+  
   https://github.com/BrianHGinc / or / https://www.eevblog.com/forum/fpga/ User BrianHG.
   
   Provide / define the INPUT_CLK_HZ parameter and the BHG_FP_clk_divider
@@ -30,22 +33,30 @@
 Example Modelsim screenshot of simulating a full second:
 
 (USE_FLOATING_DIVIDE=1,CLK_IN_HZ=100000000,CLK_OUT_HZ=3579545)
+
 screenshots/Modelsim_FPD_fp_on.png
 
 (USE_FLOATING_DIVIDE=0,CLK_IN_HZ=100000000,CLK_OUT_HZ=3579545)
+
 screenshots/Modelsim_FPD_fp_off.png
 
 
 Example Quartus screenshot of compilation report with LUT/LR:
 
 (USE_FLOATING_DIVIDE=1,CLK_IN_HZ=148500000,CLK_OUT_HZ=3072000 = Audio I2S sclk for 48000Khz sound)
+
 screenshots/Quartus_FPD_fp_on.png
 
 (USE_FLOATING_DIVIDE=0,CLK_IN_HZ=148500000,CLK_OUT_HZ=3072000 = Audio I2S sclk for 48000Khz sound)
+
 screenshots/Quartus_FPD_fp_off.png
 
 
 Looking at the 'Frequency error PPM' alone shows the value in this code.
+
 Even most consumer grade crystals are around +/-50ppm tolerant.
+
 If you require a single or multiple fractional clocks when you only have a single source clock,
 or want your FPGA compiler to only deal with one clock domain this code will fit the bill.
+
+Enjoy, BrianHG.
