@@ -1,7 +1,7 @@
 // ***************************************************************************************************************
 // BHG_FP_clk_divider_tb.v   V1.0, August 2022.
 // Floating point clock divider/synthesizer testbench.
-// 13.16 (m.n) bit floating point clock divider. (Actually it is a fixed point fractional divider.)
+// 24.16 (m.n) bit floating point clock divider. (Actually it is a fixed point fractional divider.)
 //
 // Written by Brian Guralnick.
 // https://github.com/BrianHGinc / or / https://www.eevblog.com/forum/fpga/ User BrianHG.

@@ -2,7 +2,7 @@
 //
 // BHG_FP_clk_divider.v   V1.0, August 2022.
 // Floating point clock divider/synthesizer.
-// 13.16 (m.n) bit floating point clock divider. (Actually it is a fixed point fractional divider.)
+// 24.16 (m.n) bit floating point clock divider. (Actually it is a fixed point fractional divider.)
 //
 // Written by Brian Guralnick.
 // https://github.com/BrianHGinc / or / https://www.eevblog.com/forum/fpga/ User BrianHG.
@@ -46,7 +46,7 @@ localparam [63:0] clk_per_x65kX10  = INPUT_CLK_HZ * 655360 / OUTPUT_CLK_HZ      
 localparam [63:0] clk_per_x65k     = (clk_per_x65kX10 + 5) / 10                                        ; // Trick to consider the decimal 0.5 rounding.
 localparam [63:0] clk_per_round    = clk_per_x65k + 32768                                              ; // Prepare a rounded version.
 
-localparam [12:0] clk_per_int      = USE_FLOATING_DIVIDE  ? clk_per_x65k[28:16] : clk_per_round[28:16] ; // Select between the rounded integer period or true integer period.
+localparam [23:0] clk_per_int      = USE_FLOATING_DIVIDE  ? clk_per_x65k[39:16] : clk_per_round[39:16] ; // Select between the rounded integer period or true integer period.
 localparam [15:0] clk_per_f        = USE_FLOATING_DIVIDE  ? clk_per_x65k[15:0]  : 16'd0                ; // select between no floating point and floating point adjusted audio clock generation.
 
 localparam [63:0] clk_tru_hzX100   = INPUT_CLK_HZ * 6553600 / (clk_per_int*65536+clk_per_f)            ; // Calculate the true output clock X 100.
@@ -105,7 +105,7 @@ always @(posedge clk_in) begin
             clk_p180   <=  1'b0    ;
     end else begin
     
-        if ( clk_cnt_m == (clk_per_int - !clk_cnt_n[16]) ) begin              // Add 1 extra count to the period if the carry flag clk_cnt_n[16] is set.
+        if ( clk_cnt_m == (clk_per_int[mb-1:0] - !clk_cnt_n[16]) ) begin      // Add 1 extra count to the period if the carry flag clk_cnt_n[16] is set.
 
             clk_cnt_m  <= (mb)'(0) ;
             clk_p0     <=  1'b1    ;
