@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------------------
  BHG_FP_clk_divider.v   V1.1, August 2022.
 -------------------------------------------------------------------------------------------
-  v1.1 Patches a Simulation bug cases where Modelsim's 'Compile / Compile Options / Language Syntax' is set to 'Use Verilog 2001' instead of 'Default'.
+  v1.1 Patches a simulation bug where Modelsim's 'Compile / Compile Options / Language Syntax' is set to 'Use Verilog 2001' instead of 'Default'.
 
 -------------------------------------------------------------------------------------------
  BHG_FP_clk_divider.v   V1.0, August 2022.
