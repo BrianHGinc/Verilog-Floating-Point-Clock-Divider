@@ -41,10 +41,10 @@ Example Modelsim screenshot of simulating a full second:
 
 Example Quartus screenshot of compilation report with LUT/LR:
 
-(USE_FLOATING_DIVIDE=1,CLK_IN_HZ=148500000,CLK_OUT_HZ=3072000 = Audio I2S sclk for 48000Khz sound)
+(USE_FLOATING_DIVIDE=1,CLK_IN_HZ=148500000,CLK_OUT_HZ=3072000 = Audio I2S sclk for 48Khz sound)
 ![plot](https://github.com/BrianHGinc/Verilog-Floating-Point-Clock-Divider/blob/main/screenshots/Quartus_FPD_fp_on.png)
 
-(USE_FLOATING_DIVIDE=0,CLK_IN_HZ=148500000,CLK_OUT_HZ=3072000 = Audio I2S sclk for 48000Khz sound)
+(USE_FLOATING_DIVIDE=0,CLK_IN_HZ=148500000,CLK_OUT_HZ=3072000 = Audio I2S sclk for 48Khz sound)
 ![plot](https://github.com/BrianHGinc/Verilog-Floating-Point-Clock-Divider/blob/main/screenshots/Quartus_FPD_fp_off.png)
 
 
