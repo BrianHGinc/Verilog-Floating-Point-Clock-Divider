@@ -8,7 +8,7 @@
   
   Written by Brian Guralnick.
   
-  https://github.com/BrianHGinc / or / https://www.eevblog.com/forum/fpga/ User BrianHG.
+  https://github.com/BrianHGinc / or / https://www.eevblog.com/forum/fpga/verilog-floating-point-clock-divider-release/
   
   Provide / define the INPUT_CLK_HZ parameter and the BHG_FP_clk_divider
   will generate a clock at the specified CLK_OUT_HZ parameter.  The module
