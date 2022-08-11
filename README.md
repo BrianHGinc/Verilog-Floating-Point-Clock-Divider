@@ -1,17 +1,17 @@
 -------------------------------------------------------------------------------------------
- BHG_FP_clk_divider.v   V1.2, August 2022.
+ BHG_FP_clk_divider.v   V1.2, August 10, 2022.
 -------------------------------------------------------------------------------------------
   v1.2a Added a protection for when the integer divider has less than 2 bits.
   
   v1.2b Added a compilation $error and $stop with instructions if the user supplies inoperable CLK_HZ parameters.
 
 -------------------------------------------------------------------------------------------
- BHG_FP_clk_divider.v   V1.1, August 2022.
+ BHG_FP_clk_divider.v   V1.1, August 9, 2022.
 -------------------------------------------------------------------------------------------
   v1.1 Patches a simulation bug where Modelsim's 'Compile / Compile Options / Language Syntax' is set to 'Use Verilog 2001' instead of 'Default'.
 
 -------------------------------------------------------------------------------------------
- BHG_FP_clk_divider.v   V1.0, August 2022.
+ BHG_FP_clk_divider.v   V1.0, August 9, 2022.
 -------------------------------------------------------------------------------------------
  
   Floating point clock divider/synthesizer.
