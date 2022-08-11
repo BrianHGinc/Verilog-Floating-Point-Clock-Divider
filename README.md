@@ -1,4 +1,11 @@
 -------------------------------------------------------------------------------------------
+ BHG_FP_clk_divider.v   V1.2, August 2022.
+-------------------------------------------------------------------------------------------
+  v1.2a Added a protection for when the integer divider has less than 2 bits.
+  
+  v1.2b Added a compilation $error and $stop with instructions if the user supplies inoperable CLK_HZ parameters.
+
+-------------------------------------------------------------------------------------------
  BHG_FP_clk_divider.v   V1.1, August 2022.
 -------------------------------------------------------------------------------------------
   v1.1 Patches a simulation bug where Modelsim's 'Compile / Compile Options / Language Syntax' is set to 'Use Verilog 2001' instead of 'Default'.
@@ -55,9 +62,10 @@ Example Quartus screenshot of compilation report with LUT/LR:
 
 Looking at the 'Frequency error PPM' alone shows the value in this code.
 
-Even most consumer grade crystals are around +/-50ppm tolerant.
+Remember, most consumer grade crystals are around +/-50ppm tolerant.
 
 If you require a single or multiple fractional clocks when you only have a single source clock,
-or want your FPGA compiler to only deal with one clock domain this code will fit the bill.
+or want your FPGA compiler to only deal with one master clock domain using my clock divider's
+pulse outputs as 'enable logic', this code will fit the bill.
 
 Enjoy, BrianHG.
