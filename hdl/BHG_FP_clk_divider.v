@@ -1,8 +1,13 @@
 // ******************************************************************************************************
 //
-// BHG_FP_clk_divider.v   V1.1, August 2022.
+// BHG_FP_clk_divider.v   V1.2, August 2022.
 // Floating point clock divider/synthesizer.
 // 24.16 (m.n) bit floating point clock divider. (Actually it is a fixed point fractional divider.)
+//
+// 1.2 - Added a protection for when the integer divider has less than 2 bits.
+//     - Added a compilation $error and $stop with instructions if the user supplies inoperable CLK_HZ parameters.
+// 1.1 - Fixed a bug with some Modelsim versions where its 'Compile / Compile Options / Language Syntax' is set to 'Use Verilog 2001' instead of 'Default'.
+// 1.0 - Initial release.
 //
 // Written by Brian Guralnick.
 // https://github.com/BrianHGinc / or / https://www.eevblog.com/forum/fpga/ User BrianHG.
@@ -36,6 +41,37 @@ parameter USE_FLOATING_DIVIDE = 1         ; // 1= use floating point, 0= simple 
 parameter INPUT_CLK_HZ        = 100000000 ; // Source  clk_in  frequency in Hz.
 parameter OUTPUT_CLK_HZ       = 3579545   ; // Desired clk_out frequency in Hz.
 
+
+// ****************************************************************************
+// Inoperable Parameter Error
+// ****************************************************************************
+generate
+if ( (OUTPUT_CLK_HZ*2)>INPUT_CLK_HZ )  initial begin
+$display("");
+$display("  XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+$display("  XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+$display("  XXXXX                                                       XXXXX");
+$display("  XXXXX   BHG_FP_clk_divider.v inoperable parameter error.    XXXXX");
+$display("  XXXXX   https://github.com/BrianHGinc                       XXXXX");
+$display("  XXXXX                                                       XXXXX");
+$display("  XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+$display("  XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+$display("  XXXXX                                                                                                        XXXXX");
+$display("  XXXXX   BHG_FP_clk_divider.v can only generate an output clock at least 1/2 the source clock frequency.      XXXXX");
+$display("  XXXXX                                                                                                        XXXXX");
+$display("  XXXXX   Your current set parameters:                                                                         XXXXX");
+$display("  XXXXX                                                                                                        XXXXX");
+$display("  XXXXX     .INPUT_CLK_HZ  = %d Hz.                                                                   XXXXX",31'(INPUT_CLK_HZ));
+$display("  XXXXX     .OUTPUT_CLK_HZ = %d Hz.                                                                   XXXXX",31'(OUTPUT_CLK_HZ));
+$display("  XXXXX                                                                                                        XXXXX");
+$display("  XXXXX   .OUTPUT_CLK_HZ must be less than or equal to .INPUT_CLK_HZ/2 for BHG_FP_clk_divider.v to function.   XXXXX");
+$display("  XXXXX                                                                                                        XXXXX");
+$display("  XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+$warning("  XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+$error;
+$stop;
+end
+endgenerate
 
 // *************************************************************************************************************************************************************
 //     Forcing 64 bits is required due to a ModelSim internal bug where if 'PLL1_OUT_TRUE_HZ*655360' exceeds 31 bits, it's considered negative and cropped
@@ -90,7 +126,8 @@ endgenerate
 // Floating point clock divider logic.
 // ****************************************************************************
 
-localparam mb = $clog2(clk_per_int);
+localparam pmb = $clog2(clk_per_int);
+localparam mb  = (pmb<2) ? 2 : pmb  ; // Protection for when the integer divider has less than 2 bits.
 
 reg [mb-1:0] clk_cnt_m = (mb)'(0) ; // This integer counts up 1 by 1 requiring manual bit reduction 'mb' for minimum logic cells.
 reg [16:0]   clk_cnt_n = 17'd0    ; // This fractional int adds upward by a fixed parameter, the FPGA compiler is capable of automatically pruning unused bits.

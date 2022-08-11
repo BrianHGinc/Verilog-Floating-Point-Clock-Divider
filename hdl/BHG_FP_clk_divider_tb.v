@@ -1,7 +1,12 @@
 // ***************************************************************************************************************
-// BHG_FP_clk_divider_tb.v   V1.1, August 2022.
+// BHG_FP_clk_divider_tb.v   V1.2, August 2022.
 // Floating point clock divider/synthesizer testbench.
 // 24.16 (m.n) bit floating point clock divider. (Actually it is a fixed point fractional divider.)
+//
+// 1.2 - Added a protection for when the integer divider has less than 2 bits.
+//     - Added a compilation $error and $stop with instructions if the user supplies inoperable CLK_HZ parameters.
+// 1.1 - Fixed a bug with some Modelsim versions where its 'Compile / Compile Options / Language Syntax' is set to 'Use Verilog 2001' instead of 'Default'.
+// 1.0 - Initial release.
 //
 // Written by Brian Guralnick.
 // https://github.com/BrianHGinc / or / https://www.eevblog.com/forum/fpga/ User BrianHG.
