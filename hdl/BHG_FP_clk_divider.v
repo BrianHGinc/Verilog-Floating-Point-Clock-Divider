@@ -84,7 +84,7 @@ localparam [63:0] clk_per_x65k     = (clk_per_x65kX10 + 5) / 10                 
 localparam [63:0] clk_per_round    = clk_per_x65k + 32768                                              ; // Prepare a rounded version.
 
 localparam [23:0] clk_per_int      = USE_FLOATING_DIVIDE  ? clk_per_x65k[39:16] : clk_per_round[39:16] ; // Select between the rounded integer period or true integer period.
-localparam [15:0] clk_per_f        = USE_FLOATING_DIVIDE  ? clk_per_x65k[15:0]  : 16'd0                ; // select between no floating point and floating point adjusted audio clock generation.
+localparam [15:0] clk_per_f        = USE_FLOATING_DIVIDE  ? clk_per_x65k[15:0]  : 16'd0                ; // select between no floating point and floating point clock period.
 
 localparam [63:0] clk_tru_hzX100   = INPUT_CLK_HZ * 6553600 / (clk_per_int*65536+clk_per_f)            ; // Calculate the true output clock X 100.
 localparam signed clk_dif_hzX100   = (clk_tru_hzX100 - (OUTPUT_CLK_HZ*100))                            ;
