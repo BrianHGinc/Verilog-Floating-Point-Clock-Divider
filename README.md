@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------------------
  BHG_FP_clk_divider.v   V1.3, Feb 02, 2025.
 -------------------------------------------------------------------------------------------
-  v1.3 - Corrected the PPM calculation + added 1 bit to the M divider counter for the occasional requirement. (Thanks to 'dennowiggle' for catching the error)
+  v1.3 - Corrected the PPM calculation + added 1 bit to the M divider counter for the occasional requirement. (Thanks to 'dennowiggle' for catching the bugs)
 
 -------------------------------------------------------------------------------------------
  BHG_FP_clk_divider.v   V1.2, August 10, 2022.
