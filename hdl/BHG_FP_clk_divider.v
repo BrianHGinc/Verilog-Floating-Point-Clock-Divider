@@ -4,7 +4,7 @@
 // Floating point clock divider/synthesizer.
 // 24.16 (m.n) bit floating point clock divider. (Actually it is a fixed point fractional divider.)
 //
-// 1.3 - Corrected the PPM calculation + added 1 bit to the M divider counter for the occasional requirement. (Thanks to 'dennowiggle' for catching the error)
+// 1.3 - Corrected the PPM calculation + added 1 bit to the M divider counter for the occasional requirement. (Thanks to 'dennowiggle' for catching the bugs)
 // 1.2 - Added a protection for when the integer divider has less than 2 bits.
 //     - Added a compilation $error and $stop with instructions if the user supplies inoperable CLK_HZ parameters.
 // 1.1 - Fixed a bug with some Modelsim versions where its 'Compile / Compile Options / Language Syntax' is set to 'Use Verilog 2001' instead of 'Default'.
